@@ -8,19 +8,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js" defer></script>
+    <link rel="stylesheet" href="css/styles.css">
     <title>Cotument</title>
 </head>
 <body>
     <header class="container">
         <div class="logo">
-            <i class="fa-solid fa-cat"></i>
+            <i class="fa-solid fa-shield-cat"></i>
             Сладкие кошечки
         </div>
 
         <nav>
-            <div class="btn btn_pic" title="">
-                <i class="fa-solid fa-palette"></i>
+            <div class="btn login" title="Залогиниться">
+                <i class="fa-solid fa-right-to-bracket"></i>
             </div>
             <div class="btn btn_add" title="Добавить кошечку">
                 <i class="fa-sharp fa-solid fa-paw"></i>
@@ -30,10 +31,10 @@
 
     <main class="main container">
         <section class="cards">
-
+           
         </section>
     </main>
-
+  
     <footer class="container">
         <span>&#169; 2023</span>
 
@@ -49,21 +50,19 @@
             <button class="popup__close btn"><i class="fa-solid fa-xmark"></i></button>
             <h2>Добавить питомца</h2>
             <form class="form" id="popup-form-add">
-                <!-- <div class="form__image"></div> -->
-
                 <div class="form__input">
                     <label for="id">ID</label>
                     <input type="number" id="id" name="id" min="1" required placeholder="id">
                 </div>
-
+                
                 <div class="form__input column_2">
                     <label for="name">Имя</label>
-                    <input type="text" id="name" name="name" required placeholder="Введите имя">
+                    <input type="text" id="name" name="name" required placeholder="Имя питомца">
                 </div>
 
                 <div class="form__input column_3">
                     <label for="foto">Изображение</label>
-                    <input type="url" id="foto" name="img_link" placeholder="Ссылка на фото">
+                    <input type="url" id="foto" name="image" placeholder="Ссылка на фото">
                 </div>
 
                 <div class="form__input">
@@ -77,10 +76,10 @@
                 </div>
 
                 <div class="form__input form__checkbox form__checkbox-wrap">
-                    <input type="checkbox" name="favourite" id="favourite" placeholder="">
-                    <label for="favourite">Любимчик</label>
+                    <input type="checkbox" name="favorite" id="favorite" placeholder="">
+                    <label for="favorite">Любимчик</label>
                 </div>
-
+                
                 <div class="form__input form__textarea column_3">
                     <label for="about_cat">Описание</label>
                     <textarea name="description" id="about_cat" placeholder="Напишите что-нибудь про своего питомца" rows="3"></textarea>
@@ -98,19 +97,53 @@
         </div>
     </div>
 
+    <div class="popup popup-login">
+        <div class="popup__container" >
+            <button class="popup__close btn"><i class="fa-solid fa-xmark"></i></button>
+            <h2>Авторизация</h2>
+            <form class="form" id="popup-form-login">
+                <input type="email" class="form__input" name="email" required placeholder="email">
+                <input type="password" class="form__input" name="password" placeholder="password">
+                <button type="submit" class="form__btn btn">Войти</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="popup popup-cat-info">
+        <div class="popup__container" >
+            <button class="popup__close btn popup__close_external"><i class="fa-solid fa-xmark"></i></button>
+            <div class="popup__content"></div>            
+        </div>
+    </div>
+
     <template id="card-template">
         <div class="card">
             <img src="https://i.artfile.ru/4500x3514_903167_[www.ArtFile.ru].jpg" alt="Изображение" class="card__image">
-            <a href="#" class="card__link"><h2 class="card__name">Васька</h2></a>
+            <a href="#" class="card__link"><h2 class="card__name">MurMur</h2></a>
             <button class="card__like" aria-label="Поставить лайк"><i class="fa-solid fa-heart fa-2x"></i></button>
         </div>
     </template>
 
+    <template id="cats-info-template">
+        <div class="cat-info">
+            <img src="#" alt="" class="cat-info__image" loading="lazy">
+            <span class="cat-info__id"></span>
+            <div class="cat-info__title">
+                <h2 class="cat-info__name"></h2>
+                <button class="cat-info__favourite"><i class="fa-solid fa-heart fa-2x"></i></button>
+            </div>            
+            <div class="cat-info__age">
+                <span class="cat-info__age-val"></span>
+                <span class="cat-info__age-text"></span>
+            </div>         
+            <span class="cat-info__rate"></span>
+            <p class="cat-info__desc"></p>
+            <button class="cat-info__edited"><i class="fa-regular fa-pen-to-square"></i> Редактировать</button>
+            <button class="cat-info__saved cat-info__saved_hidden"><i class="fa-regular fa-pen-to-square"></i> Сохранить</button>
+            <button class="cat-info__deleted"><i class="fa-solid fa-trash"></i> Удалить</button>
+        </div>
+    </template>
 
-    <script src="src/card.js" defer></script>
-    <script src="src/cats.js" defer></script>
-    <script src="src/popup.js" defer></script>
-    <script src="src/popup-image.js" defer></script>
-    <script src="src/scripts.js" defer></script>
+    <script src="src/index.js" type="module" defer></script>
 </body>
 </html>
